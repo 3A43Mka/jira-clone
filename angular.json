@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "jira-clone"
+  "defaultProject": "jira-clone",
+  "cli": {
+    "analytics": "6b521174-e4e1-4557-9a5b-597b2e1d43dd"
+  }
 }
