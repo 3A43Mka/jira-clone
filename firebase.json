@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/jira-clone",
+    "public": "dist/jira",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -33,8 +33,10 @@ export class TaskPageComponent implements OnInit {
     private userService: UserService
   ) {
     this.taskId = this.route.snapshot.paramMap.get('id');
-    this.task = this.taskService.getTaskById(this.taskId);
-    console.log('task details page', this.taskId);
+    this.taskService.getTasks().subscribe(tasks => {
+      this.task = this.taskService.getTaskById(this.taskId);
+      console.log('task details page', this.taskId);
+    });
   }
 
   ngOnInit(): void {
