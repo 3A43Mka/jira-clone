@@ -32,38 +32,38 @@ export class TaskPageComponent implements OnInit {
     private taskService: TaskService,
     private userService: UserService
   ) {
-    this.taskId = this.route.snapshot.paramMap.get('id');
-    this.taskService.getTasks().subscribe(tasks => {
-      this.task = this.taskService.getTaskById(this.taskId);
-      console.log('task details page', this.taskId);
-    });
   }
 
   ngOnInit(): void {
-    this.editTaskForm = new FormGroup({
-      id: new FormControl(this.task.id),
-      title: new FormControl(this.task.title, [Validators.required]),
-      details: new FormGroup({
-        status: new FormControl(this.task.details.status),
-        type: new FormControl(this.task.details.type, [Validators.required]),
-        priority: new FormControl(this.task.details.priority, [
-          Validators.required,
-        ]),
-        resolution: new FormControl(this.task.details.resolution, [
-          Validators.required,
-        ]),
-      }),
-      date: new FormGroup({
-        dueDate: new FormControl(this.task.date.dueDate, [Validators.required]),
-        created: new FormControl(this.task.date.created),
-      }),
-      description: new FormControl(this.task.description),
-      assignedTo: new FormControl(this.task.assignedTo),
-      createdBy: new FormControl(this.task.createdBy),
-      creatorName: new FormControl(this.task.creatorName),
-    });
-    this.userService.getUsers().subscribe((res) => {
-      this.users = res;
+    this.taskId = this.route.snapshot.paramMap.get('id');
+    this.taskService.getTaskByIdDB(this.taskId).subscribe(res => {
+      this.task = res;
+
+      this.editTaskForm = new FormGroup({
+        id: new FormControl(this.task.id),
+        title: new FormControl(this.task.title, [Validators.required]),
+        details: new FormGroup({
+          status: new FormControl(this.task.details.status),
+          type: new FormControl(this.task.details.type, [Validators.required]),
+          priority: new FormControl(this.task.details.priority, [
+            Validators.required,
+          ]),
+          resolution: new FormControl(this.task.details.resolution, [
+            Validators.required,
+          ]),
+        }),
+        date: new FormGroup({
+          dueDate: new FormControl(this.task.date.dueDate, [Validators.required]),
+          created: new FormControl(this.task.date.created),
+        }),
+        description: new FormControl(this.task.description),
+        assignedTo: new FormControl(this.task.assignedTo),
+        createdBy: new FormControl(this.task.createdBy),
+        creatorName: new FormControl(this.task.creatorName),
+      });
+      this.userService.getUsers().subscribe((res) => {
+        this.users = res;
+      });
     });
   }
 

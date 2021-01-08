@@ -52,6 +52,10 @@ export class TaskService {
     return this.tasks$.value.filter((t) => t.id === id)[0];
   }
 
+  getTaskByIdDB(id) {
+    return this.http.get<Task>(this.databaseURL + '/tasks/' + id + '.json').pipe(map(res => res));
+  }
+
   changeStatus(tasks: any[], id: any, status: any) {
     return tasks.map((task) => {
       if (task.id === id) {
