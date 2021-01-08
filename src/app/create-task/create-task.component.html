@@ -1,0 +1,75 @@
+<h1 mat-dialog-title>Create a TASK</h1>
+<form [formGroup]="createTaskForm">
+  <div class="dialog-wrapper">
+    <mat-form-field appearance="outline">
+      <mat-label>Task name</mat-label>
+      <input matInput formControlName="title" />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field formGroupName="date">
+      <mat-label>Choose a due date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dueDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div formGroupName="details">
+      <mat-form-field appearance="fill">
+        <mat-label>Type</mat-label>
+        <mat-select name="type" formControlName="type">
+          <mat-option *ngFor="let type of typeOptions" [value]="type.value"
+            >{{ type.value }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Priority</mat-label>
+        <mat-select name="priority" formControlName="priority">
+          <mat-option *ngFor="let p of priorityOptions" [value]="p.value"
+            >{{ p.value }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Resolution</mat-label>
+        <mat-select name="resolution" formControlName="resolution">
+          <mat-option
+            *ngFor="let resolution of resolutionOptions"
+            [value]="resolution.value"
+            >{{ resolution.value }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Details</mat-label>
+      <textarea
+        matInput
+        name="details"
+        formControlName="description"
+      ></textarea>
+    </mat-form-field>
+    <mat-dialog-actions
+      ><button
+        (click)="onSubmit()"
+        [disabled]="
+          !(
+            createTaskForm.get('title').valid &&
+            createTaskForm.get('date.dueDate').valid &&
+            createTaskForm.get('details').valid 
+          )
+        "
+        mat-raised-button
+        color="primary"
+      >
+        Create
+      </button>
+      <button mat-raised-button color="primary" (click)="closeForm()">
+        Close
+      </button></mat-dialog-actions
+    >
+  </div>
+</form>

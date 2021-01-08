@@ -1,0 +1,44 @@
+<div class="wrapper">
+  <mat-sidenav-container class="panel__main">
+    <mat-sidenav #sidenav mode="side">
+      <app-menu>
+        <button
+          class="close-btn"
+          mat-mini-fab
+          color="primary"
+          aria-label="menu icon"
+          (click)="sidenav.toggle()"
+        >
+          <mat-icon>close</mat-icon>
+        </button></app-menu
+      >
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-toolbar>
+        <button
+          mat-mini-fab
+          color="primary"
+          aria-label="menu icon"
+          (click)="sidenav.toggle()"
+          *ngIf="!sidenav.opened"
+        >
+          <mat-icon>menu</mat-icon></button
+        ><span class="logo">JIRA</span>
+
+        <button (click)="openDialog()" mat-flat-button color="primary">
+          Create
+        </button>
+
+        <span class="fill-remaining-space"></span>
+        <span>
+          <!-- <button mat-flat-button color="primary">Log In</button> -->
+          <button mat-flat-button color="accent" (click)="logOut()">
+            Log Out
+          </button>
+        </span>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

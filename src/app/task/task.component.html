@@ -1,0 +1,37 @@
+<div class="card card__projects" [ngStyle]="style">
+  <div class="task-card__wrapper">
+    <div>
+      <h4 class="task-name">{{ task.title }}</h4>
+      <h4 class="details"><span>Status:</span> {{ task.details.status }}</h4>
+      <h4 class="details">
+        <span>Priority:</span> {{ task.details.priority }}
+      </h4>
+      <h4 class="details">
+        <span>Resolution:</span> {{ task.details.resolution }}
+      </h4>
+      <h4 class="details"><span>Due date:</span>{{task.date.dueDate|date}}</h4>
+      <h4 class="details"><span>Created By:</span>{{task.creatorName}}</h4>
+      <h4 *ngIf="task.assignedTo" class="details">
+        <span>Assigned To:</span>{{task.assignedTo.username}}
+      </h4>
+    </div>
+    <div class="task-card__btn">
+      <button
+        mat-mini-fab
+        color="primary"
+        aria-label="delete icon"
+        (click)="delete()"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button
+        routerLink="../task/{{task.id}}"
+        mat-mini-fab
+        color="primary"
+        aria-label="edit icon"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

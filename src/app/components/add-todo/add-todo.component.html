@@ -1,9 +1,0 @@
-<h2>Add a todo:</h2>
-<form (ngSubmit)="submit()" [formGroup]="form">
-    <input type="text" formControlName="title">
-
-    <button
-      type="submit"
-      [disabled]="form.invalid"
-    >Add</button>
-  </form>

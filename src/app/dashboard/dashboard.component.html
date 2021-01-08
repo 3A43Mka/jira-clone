@@ -1,0 +1,31 @@
+<!-- <app-task routerLink="/task"></app-task> -->
+<ng-content></ng-content>
+<div class="task-wrapper" cdkDropListGroup>
+  <app-board
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListConnectedTo]="[inProgressList]"
+    [cdkDropListConnectedTo]="[doneList]"
+    [board]="todoBoard"
+    [cdkDropListData]="todoBoard.items"
+    (cdkDropListDropped)="drop($event)"
+  ></app-board>
+  <app-board
+    [board]="inProgressBoard"
+    cdkDropList
+    #inProgressList="cdkDropList"
+    [cdkDropListConnectedTo]="[todoList]"
+    [cdkDropListConnectedTo]="[doneList]"
+    [cdkDropListData]="inProgressBoard.items"
+    (cdkDropListDropped)="drop($event)"
+  ></app-board>
+  <app-board
+    [board]="doneBoard"
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListConnectedTo]="[todoList]"
+    [cdkDropListConnectedTo]="[inProgressList]"
+    [cdkDropListData]="doneBoard.items"
+    (cdkDropListDropped)="drop($event)"
+  ></app-board>
+</div>

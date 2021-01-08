@@ -1,0 +1,114 @@
+<form [formGroup]="editTaskForm" class="task-detail__container">
+  <mat-card>
+    <h1>{{task.title}}</h1>
+    <h4>
+      Assigned To:{{(task.assignedTo)?task.assignedTo.username:"nobody"}}
+    </h4>
+    <h4>Created By: {{task.creatorName}}</h4>
+  </mat-card>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Task Title
+        </mat-panel-title>
+        <mat-panel-description>
+          Edit task title
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field>
+        <mat-label>Edit task title</mat-label>
+        <input formControlName="title" matInput />
+      </mat-form-field>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Task Description
+        </mat-panel-title>
+        <mat-panel-description>
+          {{task.description}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <mat-label>Edit task description</mat-label>
+        <input formControlName="description" matInput />
+      </mat-form-field>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Task details
+        </mat-panel-title>
+        <mat-panel-description>
+          Details
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div formGroupName="details" class="description__container">
+        <mat-form-field appearance="fill">
+          <mat-label>Type</mat-label>
+          <mat-select name="type" formControlName="type">
+            <mat-option *ngFor="let type of typeOptions" [value]="type.value"
+              >{{ type.value }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Resolution</mat-label>
+          <mat-select name="resolution" formControlName="resolution">
+            <mat-option
+              *ngFor="let resolution of resolutionOptions"
+              [value]="resolution.value"
+              >{{ resolution.value }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Priority</mat-label>
+          <mat-select name="priority" formControlName="priority">
+            <mat-option *ngFor="let p of priorityOptions" [value]="p.value"
+              >{{ p.value }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Due date
+        </mat-panel-title>
+        <mat-panel-description>
+          Due date
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field formGroupName="date">
+        <mat-label>Choose a due date</mat-label>
+        <input formControlName="dueDate" matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div class="assign-task__wrapper">
+    <mat-card>
+      <h4>Assign a task</h4>
+      <mat-form-field appearance="fill">
+        <mat-label>Assign to</mat-label>
+        <mat-select name="users" formControlName="assignedTo">
+          <mat-option *ngFor="let user of users" [value]="user"
+            >{{user.username}}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </mat-card>
+  </div>
+  <button mat-raised-button color="accent" (click)="editTask()">Save</button>
+</form>

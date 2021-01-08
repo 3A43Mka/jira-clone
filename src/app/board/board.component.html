@@ -1,0 +1,9 @@
+<h1 class="board-title">{{ board.title }}</h1>
+<div class="panel__main-content">
+  <app-task
+    cdkDrag
+    *ngFor="let task of board.items; let i = index"
+    [task]="task"
+    [style]="board.style"
+  ></app-task>
+</div>
