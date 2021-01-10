@@ -122,13 +122,15 @@ a {
 .card {
   max-width: 200px;
   min-height: 50px;
-  //background: $blurple;
-  border-radius: 15px;
   padding: 10px 25px;
   color: $white;
   margin: 15px;
-  cursor: pointer;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.12);
+  cursor: move;
+  border: 1px solid rgb(211, 211, 211);
+  box-shadow: 7px 7px 5px #dbdbdb;
+  &:hover {
+  transform: scale(1.01);
+}
 }
 
 .purple {

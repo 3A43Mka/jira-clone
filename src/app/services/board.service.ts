@@ -10,14 +10,16 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 const boardStyles = {
-  todo: { backgroundImage: 'linear-gradient(145deg, #b8adfe, #676bc2)' },
+  todo: { borderLeft: '6px solid lightgrey',
+  backgroundColor: 'white',
+},
   inProgress: {
-    color: '#09203f',
-    backgroundImage: 'linear-gradient(145deg, #adcdfe, #a5b7d2)',
+    borderLeft: '6px solid lightblue',
+    backgroundColor: 'white',
   },
   done: {
-    color: '#09203f',
-    backgroundImage: 'linear-gradient(145deg, #a8ff78, #78ffd6)',
+    borderLeft: '6px solid limegreen',
+    backgroundColor: 'white',
   },
 };
 @Injectable({
