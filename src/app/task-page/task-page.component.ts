@@ -43,7 +43,7 @@ export class TaskPageComponent implements OnInit {
         id: new FormControl(this.task.id),
         title: new FormControl(this.task.title, [Validators.required]),
         details: new FormGroup({
-          status: new FormControl(this.task.details.status),
+          status: new FormControl(this.task.status),
           type: new FormControl(this.task.details.type, [Validators.required]),
           priority: new FormControl(this.task.details.priority, [
             Validators.required,

@@ -34,10 +34,10 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
     this.createTaskForm = new FormGroup({
       id: new FormControl('2'),
       title: new FormControl(null, [Validators.required]),
+      status: new FormControl(Status.Todo),
       createdBy: new FormControl(null),
       creatorName: new FormControl(null),
       details: new FormGroup({
-        status: new FormControl(Status.Todo),
         type: new FormControl(null, [Validators.required]),
         priority: new FormControl(null, [Validators.required]),
         resolution: new FormControl(null, [Validators.required]),

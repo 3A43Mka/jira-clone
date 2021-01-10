@@ -59,7 +59,7 @@ export class TaskService {
   changeStatus(tasks: any[], id: any, status: any) {
     return tasks.map((task) => {
       if (task.id === id) {
-        task.details.status = status;
+        task.status = status;
       }
       return task;
     });

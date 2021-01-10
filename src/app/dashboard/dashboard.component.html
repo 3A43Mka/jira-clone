@@ -4,6 +4,7 @@
     cdkDropList
     #todoList="cdkDropList"
     [cdkDropListConnectedTo]="[inProgressList]"
+    [cdkDropListConnectedTo]="[inReviewList]"
     [cdkDropListConnectedTo]="[doneList]"
     [board]="todoBoard"
     [cdkDropListData]="todoBoard.items"
@@ -14,8 +15,19 @@
     cdkDropList
     #inProgressList="cdkDropList"
     [cdkDropListConnectedTo]="[todoList]"
+    [cdkDropListConnectedTo]="[inReviewList]"
     [cdkDropListConnectedTo]="[doneList]"
     [cdkDropListData]="inProgressBoard.items"
+    (cdkDropListDropped)="drop($event)"
+  ></app-board>
+  <app-board
+    [board]="inReviewBoard"
+    cdkDropList
+    #inReviewList="cdkDropList"
+    [cdkDropListConnectedTo]="[todoList]"
+    [cdkDropListConnectedTo]="[inProgressList]"
+    [cdkDropListConnectedTo]="[doneList]"
+    [cdkDropListData]="inReviewBoard.items"
     (cdkDropListDropped)="drop($event)"
   ></app-board>
   <app-board
@@ -24,6 +36,7 @@
     #doneList="cdkDropList"
     [cdkDropListConnectedTo]="[todoList]"
     [cdkDropListConnectedTo]="[inProgressList]"
+    [cdkDropListConnectedTo]="[inReviewList]"
     [cdkDropListData]="doneBoard.items"
     (cdkDropListDropped)="drop($event)"
   ></app-board>

@@ -3,6 +3,7 @@ import { User } from './user';
 export interface Task {
     id: string;
     title: string;
+    status: string;
     details?: Details;
     created?: any;
     date?: Date;
@@ -13,7 +14,6 @@ export interface Task {
     creatorName?: string;
 }
 interface Details {
-    status: string;
     type?: string;
     resolution: string;
     priority: string;

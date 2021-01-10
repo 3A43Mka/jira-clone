@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   boardStyles;
   todoBoard: Board;
   inProgressBoard: Board;
+  inReviewBoard: Board;
   doneBoard: Board;
 
   constructor(
@@ -24,6 +25,7 @@ export class DashboardComponent implements OnInit {
   ) {
     this.todoBoard = this.boardService.todoBoard;
     this.inProgressBoard = this.boardService.inProgressBoard;
+    this.inReviewBoard = this.boardService.inReviewBoard;
     this.doneBoard = this.boardService.doneBoard;
   }
 

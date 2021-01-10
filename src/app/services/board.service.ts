@@ -17,6 +17,10 @@ const boardStyles = {
     borderLeft: '6px solid lightblue',
     backgroundColor: 'white',
   },
+  inReview: {
+    borderLeft: '6px solid yellow',
+    backgroundColor: 'white',
+  },
   done: {
     borderLeft: '6px solid limegreen',
     backgroundColor: 'white',
@@ -37,6 +41,11 @@ export class BoardService {
     items: [],
     style: this.boardStyles.inProgress,
   };
+  inReviewBoard: Board = {
+    title: Status.InReview,
+    items: [],
+    style: this.boardStyles.inReview,
+  };
   doneBoard: Board = {
     title: Status.Done,
     items: [],
@@ -48,22 +57,25 @@ export class BoardService {
       if (tasks) {
         this.todoBoard.items = this.filterTasks(tasks, Status.Todo);
         this.inProgressBoard.items = this.filterTasks(tasks, Status.InProgress);
+        this.inReviewBoard.items = this.filterTasks(tasks, Status.InReview);
         this.doneBoard.items = this.filterTasks(tasks, Status.Done);
       }
     });
 
     this.taskService.getTasks().subscribe((tasks: Task[]) => {
-      console.log('In constructor tasks', tasks);
+      console.log(tasks);
     });
   }
 
   filterTasks = (tasks: Task[], status: any) =>
-    tasks.filter((task) => task.details.status == status);
+    tasks.filter((task) => task.status == status);
 
   drop(event: CdkDragDrop<Task[]>) {
+    console.log("dropped!");
     const {
       todoQuantity,
       inProgressQuantity,
+      inReviewQuantity,
       doneQuantity,
     } = this.getQuantity();
 
@@ -81,11 +93,12 @@ export class BoardService {
         event.currentIndex
       );
     }
-    console.log(event.previousContainer);
-    console.log(event.container);
+    // console.log(event.previousContainer);
+    // console.log(event.container);
     const {
       todoQuantity: todoQ,
       inProgressQuantity: inPrQ,
+      inReviewQuantity: inRevQ,
       doneQuantity: doneQ,
     } = this.getQuantity();
 
@@ -94,32 +107,33 @@ export class BoardService {
       todoQ,
       inProgressQuantity,
       inPrQ,
+      inReviewQuantity,
+      inRevQ,
       doneQuantity,
       doneQ
     );
     if (newStatus) {
       const itemId = getDraggedItemId(event.container.data, newStatus);
       this.taskService.changeStatustDB(itemId, newStatus).subscribe();
-
     }
-
-
-    console.log(getDraggedItemId(event.container.data, newStatus));
   }
 
   getQuantity() {
     const todoQuantity = this.todoBoard.items.length;
     const inProgressQuantity = this.inProgressBoard.items.length;
+    const inReviewQuantity = this.inReviewBoard.items.length;
     const doneQuantity = this.doneBoard.items.length;
-    return { todoQuantity, inProgressQuantity, doneQuantity };
+    return { todoQuantity, inProgressQuantity, inReviewQuantity, doneQuantity };
   }
 }
 
-function getNewStatus(todo1, todo2, inPr1, inPr2, done1, done2) {
+function getNewStatus(todo1, todo2, inPr1, inPr2, inRev1, inRev2, done1, done2) {
   if (todo2 > todo1) {
     return Status.Todo;
   } else if (inPr2 > inPr1) {
     return Status.InProgress;
+  } else if (inRev2 > inRev1) {
+    return Status.InReview;
   } else if (done2 > done1) {
     return Status.Done;
   } else {
@@ -128,5 +142,11 @@ function getNewStatus(todo1, todo2, inPr1, inPr2, done1, done2) {
 }
 
 function getDraggedItemId(array, status) {
+  console.log('NEW STATUS IS' + status);
+  // console.log(array);
+  array.map((el) => {
+    console.log(el.status);
+  })
+  console.log('dragged is '+ JSON.stringify(array.filter((el) => el.status !== status)[0]));
   return array.filter((el) => el.status !== status)[0].id;
 }
