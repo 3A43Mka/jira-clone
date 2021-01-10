@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BoardComponent } from './board/board.component';
 import { TaskComponent } from './task/task.component';
-import { MenuComponent } from './menu/menu.component';
 import { FilterComponent } from './filter/filter.component';
 import { TaskPageComponent } from './task-page/task-page.component';
 import { AuthComponent } from './auth/auth.component';
@@ -71,7 +70,6 @@ const firebaseConfig = {
     DashboardComponent,
     BoardComponent,
     TaskComponent,
-    MenuComponent,
     FilterComponent,
     TaskPageComponent,
     AuthComponent,
