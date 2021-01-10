@@ -1,30 +1,10 @@
 <div class="wrapper">
   <mat-sidenav-container class="panel__main">
-    <mat-sidenav #sidenav mode="side">
-      <app-menu>
-        <button
-          class="close-btn"
-          mat-mini-fab
-          color="primary"
-          aria-label="menu icon"
-          (click)="sidenav.toggle()"
-        >
-          <mat-icon>close</mat-icon>
-        </button></app-menu
-      >
-    </mat-sidenav>
 
     <mat-sidenav-content>
       <mat-toolbar>
-        <button
-          mat-mini-fab
-          color="primary"
-          aria-label="menu icon"
-          (click)="sidenav.toggle()"
-          *ngIf="!sidenav.opened"
-        >
-          <mat-icon>menu</mat-icon></button
-        ><span class="logo">JIRA</span>
+       
+          <span class="logo">JIRA</span>
 
         <button (click)="openDialog()" mat-flat-button color="primary">
           Create

@@ -6,13 +6,26 @@
 }
 .task-card__wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+
+  .task-name {
+    font-weight: 800;
+  }
 }
 .task-card__btn {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-self: flex-end;
   button {
-    margin: 0 0 5px 0;
+    margin: 0;
+  }
+
+  .btn-delete {
+    color: rgb(211, 39, 39);
+  }
+
+  .btn-edit {
+    color: rgb(40, 109, 212);
   }
 }

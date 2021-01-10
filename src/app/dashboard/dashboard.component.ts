@@ -27,9 +27,7 @@ export class DashboardComponent implements OnInit {
     this.doneBoard = this.boardService.doneBoard;
   }
 
-  ngOnInit(): void {
-    console.log('From service', this.taskService.tasks);
-  }
+  ngOnInit(): void {  }
 
   drop(event: CdkDragDrop<Task[]>) {
     this.boardService.drop(event);
