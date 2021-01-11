@@ -30,6 +30,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HomeComponent } from './home/home.component';
 import { AngularFireModule } from '@angular/fire';
@@ -83,6 +84,7 @@ const firebaseConfig = {
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    MatSlideToggleModule,
     ReactiveFormsModule,
     ...materialModules,
     DragDropModule,

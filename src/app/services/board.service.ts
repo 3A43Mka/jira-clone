@@ -9,6 +9,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { AuthService } from './auth.service';
 const boardStyles = {
   todo: { borderLeft: '6px solid lightgrey',
   backgroundColor: 'white',
@@ -52,14 +53,33 @@ export class BoardService {
     style: this.boardStyles.done,
   };
 
-  constructor(private taskService: TaskService) {
+  onlyMyIssues: boolean = false;
+  userId = null;
+  allTasks = [];
+
+  constructor(private taskService: TaskService, private authService: AuthService ) {
     this.taskService.tasks$.subscribe((tasks: Task[]) => {
       if (tasks) {
-        this.todoBoard.items = this.filterTasks(tasks, Status.Todo);
-        this.inProgressBoard.items = this.filterTasks(tasks, Status.InProgress);
-        this.inReviewBoard.items = this.filterTasks(tasks, Status.InReview);
-        this.doneBoard.items = this.filterTasks(tasks, Status.Done);
+        this.allTasks = tasks;
+        if (this.allTasks) {
+          this.todoBoard.items = this.filterTasks(this.allTasks, Status.Todo);
+          this.inProgressBoard.items = this.filterTasks(this.allTasks, Status.InProgress);
+          this.inReviewBoard.items = this.filterTasks(this.allTasks, Status.InReview);
+          this.doneBoard.items = this.filterTasks(this.allTasks, Status.Done);
+        }  
       }
+    });
+
+    this.authService.userId.subscribe((res) => {
+      this.userId = res.uid;
+    });
+
+    this.taskService.onlyMyIssues$.subscribe((value: boolean) => {
+      this.onlyMyIssues = value;
+      this.todoBoard.items = this.filterTasks(this.allTasks, Status.Todo);
+      this.inProgressBoard.items = this.filterTasks(this.allTasks, Status.InProgress);
+      this.inReviewBoard.items = this.filterTasks(this.allTasks, Status.InReview);
+      this.doneBoard.items = this.filterTasks(this.allTasks, Status.Done);
     });
 
     this.taskService.getTasks().subscribe((tasks: Task[]) => {
@@ -67,11 +87,15 @@ export class BoardService {
     });
   }
 
-  filterTasks = (tasks: Task[], status: any) =>
-    tasks.filter((task) => task.status == status);
+  filterTasks = (tasks: Task[], status: any) => {
+    if (!this.onlyMyIssues) {
+      return tasks.filter((task) => task.status == status);
+    } else {
+      return tasks.filter((task) => (task.status == status) && (task.assignedTo) && (task.assignedTo.userId == this.userId));
+    }
+  }
 
   drop(event: CdkDragDrop<Task[]>) {
-    console.log("dropped!");
     const {
       todoQuantity,
       inProgressQuantity,
@@ -93,8 +117,6 @@ export class BoardService {
         event.currentIndex
       );
     }
-    // console.log(event.previousContainer);
-    // console.log(event.container);
     const {
       todoQuantity: todoQ,
       inProgressQuantity: inPrQ,
@@ -142,11 +164,5 @@ function getNewStatus(todo1, todo2, inPr1, inPr2, inRev1, inRev2, done1, done2) 
 }
 
 function getDraggedItemId(array, status) {
-  console.log('NEW STATUS IS' + status);
-  // console.log(array);
-  array.map((el) => {
-    console.log(el.status);
-  })
-  console.log('dragged is '+ JSON.stringify(array.filter((el) => el.status !== status)[0]));
   return array.filter((el) => el.status !== status)[0].id;
 }

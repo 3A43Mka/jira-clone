@@ -10,8 +10,9 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class TaskService {
-  tasks: Task[] = [task];
+  tasks: Task[] = [];
   tasks$: BehaviorSubject<Task[]> = new BehaviorSubject(null);
+  onlyMyIssues$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   databaseURL = 'https://jira-clone-16d01-default-rtdb.firebaseio.com/';
 
   constructor(private http: HttpClient) { }
@@ -63,6 +64,11 @@ export class TaskService {
       }
       return task;
     });
+  }
+
+  toggleOnlyMyIssues() {
+    const currentValue = this.onlyMyIssues$.value;
+    this.onlyMyIssues$.next(!currentValue);
   }
 
   deleteTask(id: any) {

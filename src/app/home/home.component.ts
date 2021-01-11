@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskComponent } from '../create-task/create-task.component';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-home',
@@ -15,11 +16,16 @@ export class HomeComponent implements OnInit {
 
     public dialog: MatDialog,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private taskService: TaskService,
   ) { }
 
   ngOnInit(): void {
 
+  }
+
+  toggleOnlyMyIssues(){
+    this.taskService.toggleOnlyMyIssues();
   }
   logOut() {
     this.authService.logOut();
