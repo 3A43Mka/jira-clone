@@ -5,8 +5,61 @@
       Assigned To:{{(task.assignedTo)?task.assignedTo.username:"nobody"}}
     </h4>
     <h4>Created By: {{task.creatorName}}</h4>
+
+    <mat-form-field appearance="fill" class="full-width-input">
+      <mat-label>Edit task title</mat-label>
+      <input formControlName="title" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width-input">
+      <mat-label>Edit task description</mat-label>
+      <input formControlName="description" matInput />
+    </mat-form-field>
+
+    <div formGroupName="details" class="details">
+      <mat-form-field appearance="fill">
+        <mat-label>Type</mat-label>
+        <mat-select name="type" formControlName="type">
+          <mat-option *ngFor="let type of typeOptions" [value]="type.value"
+            >{{ type.value }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" >
+        <mat-label>Resolution</mat-label>
+        <mat-select name="resolution" formControlName="resolution">
+          <mat-option
+            *ngFor="let resolution of resolutionOptions"
+            [value]="resolution.value"
+            >{{ resolution.value }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" >
+        <mat-label>Priority</mat-label>
+        <mat-select name="priority" formControlName="priority">
+          <mat-option *ngFor="let p of priorityOptions" [value]="p.value"
+            >{{ p.value }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field formGroupName="date">
+      <mat-label>Choose a due date</mat-label>
+      <input formControlName="dueDate" matInput [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
   </mat-card>
-  <mat-accordion>
+
+
+
+
+
+  <!-- <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -95,7 +148,7 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </mat-expansion-panel>
-  </mat-accordion>
+  </mat-accordion> -->
 
   <div class="assign-task__wrapper">
     <mat-card>

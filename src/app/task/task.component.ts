@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteTaskConfirmComponent } from '../delete-task-confirm/delete-task-confirm.component';
 import { Task } from '../models/task';
-import { Status, Priority, Resolution, Type } from '../models/task-details';
 import { TaskService } from '../services/task.service';
 
 @Component({
@@ -11,10 +12,19 @@ import { TaskService } from '../services/task.service';
 export class TaskComponent implements OnInit {
   @Input() task: Task;
   @Input() style: string;
-  constructor(private taskService: TaskService) { }
+  constructor(public dialog: MatDialog, private taskService: TaskService) { }
 
   ngOnInit(): void {
   }
 
-  delete = () => this.taskService.deleteTask(this.task.id);
+  delete = () => {
+    const dialogRef = this.dialog.open(DeleteTaskConfirmComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result) {
+        this.taskService.deleteTask(this.task.id);
+      }
+    });
+  }
+
 }

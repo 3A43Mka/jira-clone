@@ -36,6 +36,7 @@ import { HomeComponent } from './home/home.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { DeleteTaskConfirmComponent } from './delete-task-confirm/delete-task-confirm.component';
 const materialModules = [
   MatButtonModule,
   MatFormFieldModule,
@@ -76,6 +77,7 @@ const firebaseConfig = {
     AuthComponent,
     CreateTaskComponent,
     HomeComponent,
+    DeleteTaskConfirmComponent,
   ],
   entryComponents: [CreateTaskComponent],
   imports: [
