@@ -19,6 +19,9 @@ export class UserService {
 
   async createUser(userData) {
     const { username, email, password } = userData;
+    if (!username) {
+      return this.signUpError.next("Username must be providen");
+    }
     console.log(userData, email);
     try {
       const result = await this.afAuth.createUserWithEmailAndPassword(

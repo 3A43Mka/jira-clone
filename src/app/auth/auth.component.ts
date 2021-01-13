@@ -3,7 +3,6 @@ import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { User } from '../models/user';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,11 +13,10 @@ import { Subscription } from 'rxjs';
 export class AuthComponent implements OnInit, OnDestroy {
   createUserForm: FormGroup;
   loginForm: FormGroup;
-  hide: boolean;
-  user: User;
   userIdSubscription: Subscription;
   logInError;
   signUpError;
+  toggle: boolean = true;
 
   constructor(
     private userService: UserService,
@@ -50,8 +48,8 @@ export class AuthComponent implements OnInit, OnDestroy {
       this.signUpError = e;
     });
   }
-  toggle(cont) {
-    cont.classList.toggle('s--signup');
+  onToggle() {
+    this.toggle = !this.toggle;
   }
   loginEmail() {
     this.authService.loginEmail(this.loginForm.value);
