@@ -84,7 +84,6 @@ export class TaskService {
   }
 
   editTask(id: string, task: Task) {
-    console.log(task);
     const newTasks = this.filterById(this.tasks$.value, id);
     this.tasks$.next([...newTasks, task])
     return this.http.put(`${this.databaseURL}/tasks/${id}.json`, { ...task });

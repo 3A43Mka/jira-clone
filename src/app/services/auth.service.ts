@@ -31,10 +31,8 @@ export class AuthService {
         email,
         password
       );
-      console.log(result);
       this.router.navigate([`/home`]);
     } catch (error) {
-      console.log(error.message);
       this.logInError.next(error.message);
     }
   }
@@ -53,13 +51,11 @@ export class AuthService {
         const foundUser = res.filter(
           (user) => user.userId == result.user.uid
         )[0];
-        console.log("User found", foundUser)
         if (!foundUser) {
           this.userService.addUserToDB(userData).subscribe();
         }
       });
     } catch (error) {
-      console.log(error);
     }
   }
   logOut() {

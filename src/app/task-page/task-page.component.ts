@@ -38,7 +38,6 @@ export class TaskPageComponent implements OnInit {
     this.taskService.getTasks().subscribe((tasks) => {
       this.taskId = this.route.snapshot.paramMap.get('id');
       this.task = this.taskService.getTaskById(this.taskId);
-      console.log('task details page', this.taskId);
       this.editTaskForm = new FormGroup({
         id: new FormControl(this.task.id),
         title: new FormControl(this.task.title, [Validators.required]),
@@ -72,7 +71,6 @@ export class TaskPageComponent implements OnInit {
     this.taskService
       .editTask(this.taskId, editedTask)
       .subscribe((result) => {
-        console.log(result);
         this.task = editedTask;
       });
   }

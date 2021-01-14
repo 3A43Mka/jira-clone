@@ -51,7 +51,6 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
     this.userSubscription = this.authService.userId.subscribe((res) => {
       this.userId = res.uid;
       this.user = res;
-      console.log(this.user);
     });
   }
 
@@ -60,7 +59,6 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
     newTask.date.created = new Date();
     newTask.createdBy = this.userId;
     newTask.creatorName = this.user.displayName;
-    console.log(this.createTaskForm.value);
     this.closeForm();
     this.taskService
       .createTaskDB(this.createTaskForm.value)

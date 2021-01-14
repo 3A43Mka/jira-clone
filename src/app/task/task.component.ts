@@ -20,7 +20,6 @@ export class TaskComponent implements OnInit {
   delete = () => {
     const dialogRef = this.dialog.open(DeleteTaskConfirmComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result) {
         this.taskService.deleteTask(this.task.id);
       }
