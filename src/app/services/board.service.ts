@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Board } from '../models/board';
-import { task } from '../tasks';
 import { TaskService } from './task.service';
 import { Task } from '../models/task';
 import { Status } from '../models/task-details';

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateTaskComponent } from '../create-task/create-task.component';
 import { Board } from '../models/board';
-import { task } from '../tasks';
 import { TaskService } from '../services/task.service';
 import { BoardService } from '../services/board.service';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';

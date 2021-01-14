@@ -6,11 +6,11 @@ import { CreateTaskComponent } from '../create-task/create-task.component';
 import { TaskService } from '../services/task.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-navigation',
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class NavigationComponent implements OnInit {
   constructor(
 
     public dialog: MatDialog,

@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BoardComponent } from './board/board.component';
 import { TaskComponent } from './task/task.component';
-import { FilterComponent } from './filter/filter.component';
 import { TaskPageComponent } from './task-page/task-page.component';
 import { AuthComponent } from './auth/auth.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,7 +31,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { HomeComponent } from './home/home.component';
+import { NavigationComponent } from './navigation/navigation.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
@@ -72,11 +71,10 @@ const firebaseConfig = {
     DashboardComponent,
     BoardComponent,
     TaskComponent,
-    FilterComponent,
     TaskPageComponent,
     AuthComponent,
     CreateTaskComponent,
-    HomeComponent,
+    NavigationComponent,
     DeleteTaskConfirmComponent,
   ],
   entryComponents: [CreateTaskComponent],

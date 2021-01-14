@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { task } from '../tasks';
 import { Task } from '../models/task';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap, debounceTime } from 'rxjs/operators';
-import { AuthService } from './auth.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
