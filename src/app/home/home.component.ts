@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 import { MatDialog } from '@angular/material/dialog';
@@ -15,7 +14,6 @@ export class HomeComponent implements OnInit {
   constructor(
 
     public dialog: MatDialog,
-    private router: Router,
     private authService: AuthService,
     private taskService: TaskService,
   ) { }

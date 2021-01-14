@@ -36,7 +36,6 @@ export class AuthComponent implements OnInit, OnDestroy {
       password: new FormControl(null, [Validators.required]),
     });
     this.userIdSubscription = this.authService.userId.subscribe((res) => {
-      console.log('redirect ID=', res);
       if (res) {
         this.router.navigate([`/home/dashboard`]);
       }
