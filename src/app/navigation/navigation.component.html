@@ -3,16 +3,22 @@
     <mat-sidenav-content>
       <mat-toolbar>
         <span class="logo">JIRA-CLONE</span>
-        <button mat-stroked-button class="add-btn" (click)="openDialog()">
-          <mat-icon>add_box</mat-icon>
-        </button>
+        <div class="add-btn">
+          <button mat-button (click)="openDialog()">
+            <mat-icon>add_box</mat-icon>
+            Create task
+          </button>  
+        </div>
         <div>
-          <mat-slide-toggle color="primary" (change)="toggleOnlyMyIssues()">Only my issues</mat-slide-toggle>
+          <mat-slide-toggle color="primary" (change)="toggleOnlyMyIssues()"> <span class="filter-toggle">Only my issues</span></mat-slide-toggle>
         </div>
         <span class="fill-remaining-space"></span>
-        <button mat-stroked-button class="logout-btn" (click)="logOut()">
+        <div class="logout-btn" >
+        <button mat-button (click)="logOut()">
+          <mat-icon>exit_to_app</mat-icon>
           LogOut
         </button>
+      </div>
       </mat-toolbar>
       <router-outlet></router-outlet>
     </mat-sidenav-content>

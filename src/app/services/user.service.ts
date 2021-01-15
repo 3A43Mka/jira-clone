@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
-import { auth } from 'firebase';
 import { Subject, Observable } from 'rxjs';
 import { User } from '../models/user';
-import { Task } from '../models/task';
 import { map } from 'rxjs/operators';
 
 @Injectable({

@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { TaskService } from '../services/task.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { type, resolution, status, priority } from './select-details';
 import { Status, Priority, Resolution, Type } from '../models/task-details';
 import { Task } from '../models/task';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 import { User } from 'firebase';
 import { Subscription } from 'rxjs';

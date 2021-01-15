@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Task } from '../models/task';
 import { Board } from '../models/board';
 
 @Component({
